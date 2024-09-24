@@ -7,3 +7,5 @@
 
 [![asciicast](https://asciinema.org/a/BZ1cQrPxRHpleXpjEDEpgYELP.svg)](https://asciinema.org/a/BZ1cQrPxRHpleXpjEDEpgYELP)
 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/108244df960d0abe7e8a/test_coverage)](https://codeclimate.com/github/Kos1la/backend-project-46/test_coverage)
+
