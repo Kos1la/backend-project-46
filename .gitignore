@@ -1,3 +1,4 @@
 /node_modules/
 demo.cast
+coverage
 *.log

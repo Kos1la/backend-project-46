@@ -1,10 +1,8 @@
-
 name: Node CI
 
-
 on:
-  - push
-  - pull_request
+  push:
+  pull_request:
 
 env:
   CI: true
@@ -15,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-     
       matrix:
         node-version: [20.x]
 
@@ -29,13 +26,9 @@ jobs:
       - run: make install
       - run: make lint
       - run: make test
-    #   - name: Test & publish code coverage
-     
-      
-    #     uses: paambaati/codeclimate-action@v5.0.0
-        
-    #     env:
-    #        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-    #     with:
-    #        coverageCommand: make test-coverage
-        
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v5.0.0
+        env:
+           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+           coverageCommand: "make test-coverage"
