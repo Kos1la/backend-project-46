@@ -15,5 +15,8 @@
   "dependencies": {
     "commander": "^12.1.0",
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }

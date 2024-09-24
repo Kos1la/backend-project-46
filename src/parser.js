@@ -10,3 +10,5 @@ const parseFile = (filepath) => {
   }
   throw new Error(`unknown file format ${fileExtension}`);
 };
+
+export default parseFile;

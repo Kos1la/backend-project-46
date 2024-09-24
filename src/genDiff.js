@@ -1,21 +1,33 @@
 import _ from 'lodash';
 
-const genDiff = (filepath1, filepath2) => {
-  const keys = _.union(_.keys(filepath1), _.keys(filepath2));
-  const sortedKeys = _.sortBy(keys);
+// Функция для получения статуса ключа
+const getKeyStatus = (key, obj1, obj2) => {
+  if (!_.has(obj2, key)) return 'removed';
+  if (!_.has(obj1, key)) return 'added';
+  if (!_.isEqual(obj1[key], obj2[key])) return 'updated';
+  return 'unchanged';
+};
 
-  const diff = sortedKeys.map((key) => {
-    if (!_.has(filepath2, key)) {
-      return `- ${key}: ${filepath1[key]}`;
+// Основная функция генDiff
+const genDiff = (filepath1, filepath2) => {
+  const keys = _.sortBy(_.union(_.keys(filepath1), _.keys(filepath2)));
+
+  const diff = keys.map((key) => {
+    const status = getKeyStatus(key, filepath1, filepath2);
+    switch (status) {
+      case 'removed':
+        return `- ${key}: ${filepath1[key]}`;
+      case 'added':
+        return `+ ${key}: ${filepath2[key]}`;
+      case 'updated':
+        return `- ${key}: ${filepath1[key]}\n+ ${key}: ${filepath2[key]}`;
+      case 'unchanged':
+        return `  ${key}: ${filepath1[key]}`;
+      default:
+        return '';
     }
-    if (!_.has(filepath1, key)) {
-      return `+ ${key}: ${filepath2[key]}`;
-    }
-    if (!_.isEqual(filepath1[key], filepath2[key])) {
-      return `- ${key}: ${filepath1[key]}\n+ ${key}: ${filepath2[key]}`;
-    }
-    return `  ${key}: ${filepath1[key]}`;
   });
+
   return diff.join('\n');
 };
 
