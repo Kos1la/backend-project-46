@@ -13,8 +13,8 @@ program
   .option('-V, --version', 'output the version number')
   .option('-f, --format [type]', 'output format')
   .action((filepath1, filepath2) => {
-    const absolutePath1 = path.resolve(process.cwd(), filepath1);
-    const absolutePath2 = path.resolve(process.cwd(), filepath2);
+    const absolutePath1 = path.resolve(process.cwd(), '__fixtures__', filepath1);
+    const absolutePath2 = path.resolve(process.cwd(), '__fixtures__', filepath2);
 
     const data1 = readFileSync(absolutePath1);
     const data2 = readFileSync(absolutePath2);
