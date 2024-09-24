@@ -2,7 +2,7 @@
 
 import { Command } from 'commander';
 import genDiff from '../src/genDiff.js';
-import { readFileSync } from 'fs';
+import parseFile from '../src/parser.js';
 import path from 'path';
 
 const program = new Command();
@@ -16,13 +16,10 @@ program
     const absolutePath1 = path.resolve(process.cwd(), '__fixtures__', filepath1);
     const absolutePath2 = path.resolve(process.cwd(), '__fixtures__', filepath2);
 
-    const data1 = readFileSync(absolutePath1);
-    const data2 = readFileSync(absolutePath2);
+    const data1 = parseFile(absolutePath1);
+    const data2 = parseFile(absolutePath2);
 
-    const parsedData1 = JSON.parse(data1);
-    const parsedData2 = JSON.parse(data2);
-
-    const diff = genDiff(parsedData1, parsedData2);
+    const diff = genDiff(data1, data2);
     console.log(diff);
   });
 
