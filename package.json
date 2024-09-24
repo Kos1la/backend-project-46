@@ -8,7 +8,8 @@
     "gendiff": "./bin/gendiff.js"
   },
   "scripts": {
-    "start": "node bin/gendiff.js"
+    "start": "node bin/gendiff.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
