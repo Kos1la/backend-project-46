@@ -2,17 +2,18 @@
   "name": "@hexlet/code.",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/Kos1la/backend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kos1la/backend-project-46/actions)",
-  "main": "index.js",
+  "main": "src/genDiff.js",
   "type": "module",
   "bin": {
-    "gendiff":"./src/gendiff.js"
+    "gendiff": "./bin/gendiff.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bin/gendiff.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^12.1.0"
+    "commander": "^12.1.0",
+    "lodash": "^4.17.21"
   }
 }
