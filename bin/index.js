@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
-import { program } from "commander";
+import { Command } from "commander";
 import genDiff from "../src/gendiff.js";
 import path from "path";
+
+const program = new Command();
 
 program
   .name("gendiff")
@@ -16,4 +18,4 @@ program
     console.log(genDiff(fullPath1, fullPath2));
   });
 
-program.parse();
+program.parse(process.argv);
