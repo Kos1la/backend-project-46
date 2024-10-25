@@ -1,14 +1,13 @@
-import fs from "fs";
 import _ from "lodash";
-
-const parseFile = (filepath) => {
-  const data = fs.readFileSync(filepath, "utf-8");
-  return JSON.parse(data);
-};
+import parseFile from "./parser.js";
 
 const genDiff = (filepath1, filepath2) => {
   const data1 = parseFile(filepath1);
   const data2 = parseFile(filepath2);
+
+  if (_.isEqual(data1, data2)) {
+    return "{}";
+  }
 
   const keys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
 
