@@ -1,29 +1,46 @@
 import _ from "lodash";
 
 const makeTree = (data1, data2) => {
-  const arr = _.union(Object.keys(data1), Object.keys(data2));
-  const sortedKeys = _.sortBy(arr);
-  return sortedKeys.map((key) => {
+  const allKeys = _.sortBy(_.union(_.keys(data1), _.keys(data2)));
+
+  const tree = allKeys.map((key) => {
+    if (!_.has(data1, key)) {
+      return {
+        name: key,
+        value: data2[key],
+        type: "added",
+      };
+    }
+    if (!_.has(data2, key)) {
+      return {
+        name: key,
+        value: data1[key],
+        type: "deleted",
+      };
+    }
     if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
       return {
-        key,
+        name: key,
         type: "nested",
         children: makeTree(data1[key], data2[key]),
       };
     }
-    if (!_.has(data1, key)) return { key, value: data2[key], type: "added" };
-    if (!_.has(data2, key)) return { key, value: data1[key], type: "deleted" };
-
-    if (!_.isEqual(data1[key], data2[key])) {
+    if (data1[key] !== data2[key]) {
       return {
-        key,
-        value1: data1[key],
-        value2: data2[key],
+        name: key,
         type: "changed",
+        beforeValue: data1[key],
+        afterValue: data2[key],
       };
     }
-    return { key, value: data1[key], type: "unchanged" };
-  });
-};
 
+    return {
+      name: key,
+      value: data1[key],
+      type: "unchanged",
+    };
+  });
+
+  return tree;
+};
 export default makeTree;
