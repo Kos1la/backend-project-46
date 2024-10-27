@@ -1,0 +1,24 @@
+# Dependencies
+/node_modules
+package-lock.json
+
+# Production
+/build
+
+# Tests
+**/coverage/
+**/__tests__/
+#**/__fixtures__/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+report.*
+
+# IDEA
+.idea
+.vscode/
+.DS_Store
+
+
