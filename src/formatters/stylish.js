@@ -60,7 +60,6 @@ const render = (tree) => {
         }
       }
     });
-
   return `{${iter(tree).join('')}\n}`;
 };
 
