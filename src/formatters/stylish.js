@@ -3,15 +3,13 @@ import _ from 'lodash';
 const spaceForBigIndent = 6;
 const spaceForSmallIndent = 4;
 const spaceForVerySmallIndent = 2;
-
 const stringify = (value, spaces) => {
   const indent = ' '.repeat(spaces + spaceForBigIndent);
-  const indentClose = ' '.repeat(spaces + spaceForVerySmallIndent);
 
+  const indentClose = ' '.repeat(spaces + spaceForVerySmallIndent);
   if (!_.isObject(value)) {
     return value;
   }
-
   const entries = _.keys(value);
   const nestedValue = entries.map((key) => {
     if (_.isObject(value[key])) {
@@ -22,7 +20,6 @@ const stringify = (value, spaces) => {
     }
     return `${indent}${key}: ${value[key]}\n`;
   });
-
   return `{\n${nestedValue.join('')}${indentClose}}`;
 };
 
@@ -34,32 +31,37 @@ const render = (tree) => {
       const indentClose = ' '.repeat(spaces + spaceForVerySmallIndent);
 
       switch (type) {
-        case 'added':
+        case 'added': {
           return `\n${indent}+ ${name}: ${stringify(value, spaces)}`;
-        case 'deleted':
+        }
+        case 'deleted': {
           return `\n${indent}- ${name}: ${stringify(value, spaces)}`;
-        case 'nested':
+        }
+        case 'nested': {
           return `\n${indent}  ${name}: {${iter(
             children,
             spaces + spaceForSmallIndent,
-          ).join('')}}\n${indentClose}}`;
-        case 'changed':
+          ).join('')}\n${indentClose}}`;
+        }
+        case 'changed': {
           return `\n${indent}- ${name}: ${stringify(
             beforeValue,
             spaces,
           )}\n${indent}+ ${name}: ${stringify(afterValue, spaces)}`;
-        case 'unchanged':
+        }
+        case 'unchanged': {
           return `\n${indent}  ${name}: ${stringify(value, spaces)}`;
-        default:
+        }
+        default: {
           throw new Error('Invalid style indentation');
+        }
       }
     });
 
   return `{${iter(tree).join('')}\n}`;
 };
-
 const stylish = (data) => {
-  return render(data);
+  const result = render(data);
+  return result;
 };
-
 export default stylish;
