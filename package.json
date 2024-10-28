@@ -1,7 +1,7 @@
 {
-  "name": "backend-project-46",
+  "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/Kos1la/backend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kos1la/backend-project-46/actions)",
+  "description": "[![Actions Status](https://github.com/Kos1la/@hexlet/code/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kos1la/@hexlet/code/actions)",
   "main": "src/index.js",
   "scripts": {
     "test": "jest"
