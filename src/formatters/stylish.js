@@ -3,13 +3,15 @@ import _ from 'lodash';
 const spaceForBigIndent = 6;
 const spaceForSmallIndent = 4;
 const spaceForVerySmallIndent = 2;
+
 const stringify = (value, spaces) => {
   const indent = ' '.repeat(spaces + spaceForBigIndent);
-
   const indentClose = ' '.repeat(spaces + spaceForVerySmallIndent);
+
   if (!_.isObject(value)) {
     return value;
   }
+
   const entries = _.keys(value);
   const nestedValue = entries.map((key) => {
     if (_.isObject(value[key])) {
@@ -20,6 +22,7 @@ const stringify = (value, spaces) => {
     }
     return `${indent}${key}: ${value[key]}\n`;
   });
+
   return `{\n${nestedValue.join('')}${indentClose}}`;
 };
 
@@ -60,8 +63,10 @@ const render = (tree) => {
 
   return `{${iter(tree).join('')}\n}`;
 };
+
 const stylish = (data) => {
   const result = render(data);
   return result;
 };
+
 export default stylish;
