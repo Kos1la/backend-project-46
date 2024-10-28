@@ -9,7 +9,7 @@ const parseFile = (fileContent, extension) => {
       return yaml.load(fileContent);
     default:
       throw new Error(
-        `Invalid extension: '${extension}'! Try 'json', 'yml', or 'yaml'.`
+        `Invalid extension: '${extension}'! Try 'json', 'yml', or 'yaml'.`,
       );
   }
 };

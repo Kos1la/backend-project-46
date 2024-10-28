@@ -12,7 +12,7 @@ const formatFile = (tree, format) => {
       return stylish(tree);
     default:
       throw new Error(
-        `There is no type called: '.${format}'! Try plain, json or stylish`
+        `There is no type called: '.${format}'! Try plain, json or stylish`,
       );
   }
 };

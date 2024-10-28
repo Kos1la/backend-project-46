@@ -21,22 +21,18 @@ const plain = (tree) => {
         const path = `${keyName}${name}`;
 
         switch (type) {
-          case 'added': {
+          case 'added':
             return `Property '${path}' was added with value: ${getValue(
-              value
+              value,
             )}`;
-          }
-          case 'deleted': {
+          case 'deleted':
             return `Property '${path}' was removed`;
-          }
-          case 'changed': {
+          case 'changed':
             return `Property '${path}' was updated. From ${getValue(
-              beforeValue
+              beforeValue,
             )} to ${getValue(afterValue)}`;
-          }
-          case 'nested': {
+          case 'nested':
             return iter(children, `${path}.`);
-          }
           default:
             throw new Error('Unknown data type');
         }
