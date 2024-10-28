@@ -1,30 +1,30 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 const makeAddedNode = (key, data2) => ({
   name: key,
   value: data2[key],
-  type: "added",
+  type: 'added',
 });
 const makeDeletedNode = (key, data1) => ({
   name: key,
   value: data1[key],
-  type: "deleted",
+  type: 'deleted',
 });
 const makeNestedNode = (key, data1, data2, makeTree) => ({
   name: key,
-  type: "nested",
+  type: 'nested',
   children: makeTree(data1[key], data2[key]),
 });
 const makeChangedNode = (key, data1, data2) => ({
   name: key,
-  type: "changed",
+  type: 'changed',
   beforeValue: data1[key],
   afterValue: data2[key],
 });
 const makeUnchangedNode = (key, data1) => ({
   name: key,
   value: data1[key],
-  type: "unchanged",
+  type: 'unchanged',
 });
 
 const makeTree = (data1, data2) => {

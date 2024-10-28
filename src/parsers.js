@@ -1,11 +1,11 @@
-import yaml from "js-yaml";
+import yaml from 'js-yaml';
 
 const parseFile = (fileContent, extension) => {
   switch (extension) {
-    case "json":
+    case 'json':
       return JSON.parse(fileContent);
-    case "yml":
-    case "yaml":
+    case 'yml':
+    case 'yaml':
       return yaml.load(fileContent);
     default:
       throw new Error(

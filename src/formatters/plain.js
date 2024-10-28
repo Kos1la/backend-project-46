@@ -1,11 +1,11 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 const getValue = (value) => {
   if (value === null) {
     return null;
   }
   if (_.isObject(value)) {
-    return "[complex value]";
+    return '[complex value]';
   }
   if (_.isString(value)) {
     return `'${value}'`;
@@ -16,34 +16,34 @@ const getValue = (value) => {
 const plain = (tree) => {
   const iter = (data, keyName) =>
     data
-      .filter(({ type }) => type !== "unchanged")
+      .filter(({ type }) => type !== 'unchanged')
       .map(({ name, type, children, value, beforeValue, afterValue }) => {
         const path = `${keyName}${name}`;
 
         switch (type) {
-          case "added": {
+          case 'added': {
             return `Property '${path}' was added with value: ${getValue(
               value
             )}`;
           }
-          case "deleted": {
+          case 'deleted': {
             return `Property '${path}' was removed`;
           }
-          case "changed": {
+          case 'changed': {
             return `Property '${path}' was updated. From ${getValue(
               beforeValue
             )} to ${getValue(afterValue)}`;
           }
-          case "nested": {
+          case 'nested': {
             return iter(children, `${path}.`);
           }
           default:
-            throw new Error("Unknown data type");
+            throw new Error('Unknown data type');
         }
       })
-      .join("\n");
+      .join('\n');
 
-  return iter(tree, "");
+  return iter(tree, '');
 };
 
 export default plain;
