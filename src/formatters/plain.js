@@ -14,8 +14,8 @@ const getValue = (value) => {
 };
 
 const plain = (tree) => {
-  const iter = (data, keyName) =>
-    data
+  const iter = (data, keyName) => {
+    return data
       .filter(({ type }) => type !== 'unchanged')
       .map(({ name, type, children, value, beforeValue, afterValue }) => {
         const path = `${keyName}${name}`;
@@ -38,7 +38,7 @@ const plain = (tree) => {
         }
       })
       .join('\n');
-
+  };
   return iter(tree, '');
 };
 
