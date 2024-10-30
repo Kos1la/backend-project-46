@@ -64,5 +64,5 @@ test.each(testCases)(
   '.add($file1, $file2, $style)',
   ({ file1, file2, format, expected }) => {
     expect(gendiff(file1, file2, format)).toEqual(expected);
-  }
+  },
 );
