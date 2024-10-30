@@ -5,10 +5,10 @@ package-lock.json
 # Production
 /build
 
-# Tests
-**/coverage/
-**/__tests__/
-#**/__fixtures__/
+# # Tests
+# **/coverage/
+# **/__tests__/
+# #**/__fixtures__/
 
 # Logs
 logs
