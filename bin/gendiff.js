@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { Command } from 'commander/esm';
+import { Command } from 'commander';
 import gendiff from '../index.js';
 
 const program = new Command();
