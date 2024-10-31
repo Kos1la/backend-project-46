@@ -13,8 +13,11 @@
     "gendiff": "./bin/gendiff.js"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.13.0",
-    "eslint": "^9.13.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.31.0",
     "globals": "^15.11.0",
     "jest": "^29.7.0"
   },

@@ -6,8 +6,7 @@ import gendiff from '../index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const getPath = (filename) =>
-  path.join(__dirname, '..', '__fixtures__', filename);
+const getPath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => readFileSync(getPath(filename), 'utf-8');
 
 const expectedJson = readFile('expected.txt');
@@ -62,7 +61,9 @@ const testCases = [
 
 test.each(testCases)(
   '.add($file1, $file2, $style)',
-  ({ file1, file2, format, expected }) => {
+  ({
+    file1, file2, format, expected,
+  }) => {
     expect(gendiff(file1, file2, format)).toEqual(expected);
   },
 );

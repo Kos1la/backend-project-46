@@ -27,39 +27,40 @@ const stringify = (value, spaces) => {
 };
 
 const render = (tree) => {
-  const iter = (data, spaces = spaceForVerySmallIndent) =>
-    data.map((key) => {
-      const { name, type, children, value, beforeValue, afterValue } = key;
-      const indent = ' '.repeat(spaces);
-      const indentClose = ' '.repeat(spaces + spaceForVerySmallIndent);
+  const iter = (data, spaces = spaceForVerySmallIndent) => data.map((key) => {
+    const {
+      name, type, children, value, beforeValue, afterValue,
+    } = key;
+    const indent = ' '.repeat(spaces);
+    const indentClose = ' '.repeat(spaces + spaceForVerySmallIndent);
 
-      switch (type) {
-        case 'added': {
-          return `\n${indent}+ ${name}: ${stringify(value, spaces)}`;
-        }
-        case 'deleted': {
-          return `\n${indent}- ${name}: ${stringify(value, spaces)}`;
-        }
-        case 'nested': {
-          return `\n${indent}  ${name}: {${iter(
-            children,
-            spaces + spaceForSmallIndent,
-          ).join('')}\n${indentClose}}`;
-        }
-        case 'changed': {
-          return `\n${indent}- ${name}: ${stringify(
-            beforeValue,
-            spaces,
-          )}\n${indent}+ ${name}: ${stringify(afterValue, spaces)}`;
-        }
-        case 'unchanged': {
-          return `\n${indent}  ${name}: ${stringify(value, spaces)}`;
-        }
-        default: {
-          throw new Error('Invalid style indentation');
-        }
+    switch (type) {
+      case 'added': {
+        return `\n${indent}+ ${name}: ${stringify(value, spaces)}`;
       }
-    });
+      case 'deleted': {
+        return `\n${indent}- ${name}: ${stringify(value, spaces)}`;
+      }
+      case 'nested': {
+        return `\n${indent}  ${name}: {${iter(
+          children,
+          spaces + spaceForSmallIndent,
+        ).join('')}\n${indentClose}}`;
+      }
+      case 'changed': {
+        return `\n${indent}- ${name}: ${stringify(
+          beforeValue,
+          spaces,
+        )}\n${indent}+ ${name}: ${stringify(afterValue, spaces)}`;
+      }
+      case 'unchanged': {
+        return `\n${indent}  ${name}: ${stringify(value, spaces)}`;
+      }
+      default: {
+        throw new Error('Invalid style indentation');
+      }
+    }
+  });
   return `{${iter(tree).join('')}\n}`;
 };
 
